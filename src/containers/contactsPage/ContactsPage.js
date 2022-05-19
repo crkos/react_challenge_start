@@ -1,43 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React,{ useState , useEffect } from "react";
 import {ContactForm} from '../../components/contactForm/ContactForm.js';
 import {TileList} from '../../components/tileList/TileList.js';
 
 export const ContactsPage = (props) => {
+  
+  
   /*
   Define state variables for 
   contact info and duplicate check
   */
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [duplicate, setDuplicate] = useState('');
+  
+  const [name,setName] = useState('');
+  const [email,setEmail] = useState('');
+  const [phone,setPhone] = useState('');
+  const [duplicateName,setDuplicateName] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    /*
+     /*
     Add contact info and clear data
     if the contact name is not a duplicate
     */
-   if(duplicate === false) {
-    props.addContact(name, phone, email);
-    setName('');
-    setPhone('');
-    setEmail('');  
-   }
-  };
+    if(duplicateName === false){
+      props.addContact(name,phone,email);
+      setName('');
+      setPhone('');
+      setEmail('');
 
+    }
+   
+  };
+  useEffect(()=>{
+    const result = props.contacts.find((element) => {
+        return element.name === name;
+    });
+    if(result !== undefined) { 
+      setDuplicateName(true);
+    }
+  },[name])
   /*
   Using hooks, check for contact name in the 
   contacts array variable in props
   */
-
-  useEffect(() => {
-    const result = props.contacts.find((element) => {
-      return element.name === name;
-    });
-    if(result !== undefined){
-      setDuplicate(true);
-    }
-  }, [name]);
 
   return (
     <div>

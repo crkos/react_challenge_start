@@ -21,4 +21,4 @@ export const ContactForm = (props) => {
       <input type="submit" value="Submit" />
     </form>
   );
-};
+}

@@ -5,11 +5,11 @@ export const TileList = (props) => {
   
   return (
     <div>
-    {
-      props.list.map((object,index) => {
-        <Tile object={object} key={index}></Tile>
-      })
-    }    
+      {
+        props.list.map((object,index) => {
+          return <Tile object={object} key={index}></Tile>
+        })
+      }    
     </div>
   );
 };
