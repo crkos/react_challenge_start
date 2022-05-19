@@ -14,6 +14,8 @@ export const ContactsPage = (props) => {
   const [email,setEmail] = useState('');
   const [phone,setPhone] = useState('');
   const [duplicateName,setDuplicateName] = useState(false);
+
+  
   const handleSubmit = (e) => {
     e.preventDefault();
      /*
